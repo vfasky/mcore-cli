@@ -16,7 +16,7 @@ socket '/sockjs-node',
         $.getJSON '/_changedFiles.json'
          .then (changedFiles)=>
              isScript = false
-             scriptTypes = ['.coffee', '.js', '.tpl', '.es6']
+             scriptTypes = ['.coffee', '.js', '.tpl', '.html', '.es6']
              for file in changedFiles
                  extname = path.extname file
                  if extname in scriptTypes
