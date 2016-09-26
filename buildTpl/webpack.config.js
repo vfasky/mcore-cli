@@ -12,15 +12,17 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const WebpackDevServer = require('webpack-dev-server');
 
 const CleanPlugin = require('clean-webpack-plugin');
 const ChangeFilesPlugin = require('mcore-cli/tool/webpack/changeFilesPlugin');
-const buildHtml = require('mcore-cli/tool/webpack/buildHtmlPlugin');
+const BuildHtml = require('mcore-cli/tool/webpack/buildHtmlPlugin');
 
 process.env.ENV = process.env.ENV || 'dev';
+process.env.PORT = process.env.PORT || 8080;
 
 // dev server host
-const devHost = 'http://localhost:8080/';
+const devHost = 'http://localhost:'+ process.env.PORT +'/';
 
 let config = {
     staticPath: '/',
@@ -112,7 +114,7 @@ let config = {
             'window.jQuery': 'jquery',
         }),
         new DashboardPlugin(),
-        buildHtml({
+        new BuildHtml({
             tplPath: path.join(__dirname, 'outTpl'),
             outPath: path.join(__dirname),
             varMap: {
@@ -178,11 +180,25 @@ switch (process.env.ENV) {
         config.plugins.push(new ExtractTextPlugin('style/[name].css'));
 
         config.plugins.push(
-            new ChangeFilesPlugin(
-                path.join(__dirname, '_changedFiles.json')
-            )
+            new ChangeFilesPlugin()
         );
 
         config.entry.vendor.push(path.join(__dirname, 'node_modules/mcore-cli/tool/webpack/wdsClient'));
-        module.exports = config;
+        let compiler = webpack(config);
+
+        WebpackDevServer.prototype.socketSendData = function(sockets, stats, force, type, data){
+            this._sendStats(sockets, stats, force);
+            this.sockWrite(this.sockets, type, data);
+        };
+
+        let server = new WebpackDevServer(compiler,{
+            // compress: true,
+            publicPath: config.output.publicPath,
+            stats: {
+    			colors: true
+    		}
+        });
+        compiler._server = server;
+        // console.log(compiler);
+        server.listen(process.env.PORT);
 }

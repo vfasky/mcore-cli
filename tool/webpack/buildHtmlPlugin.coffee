@@ -9,6 +9,7 @@ fs = require 'fs-plus'
 path = require 'path'
 glob = require 'glob'
 nunjucks = require 'nunjucks'
+gaze = require 'gaze'
 
 getDep = (tplPath, outPath)->
     # 读模板文件
@@ -26,52 +27,77 @@ getDep = (tplPath, outPath)->
 
     data
 
+BuildHtml = (options = {})->
+    @tplPath = options.tplPath or= ''
+    @outPath = options.outPath or = ''
+    @varMap = options.varMap or= {}
+    @stats = null
 
-module.exports = (options = {})->
-    tplPath = options.tplPath or= ''
-    outPath = options.outPath or = ''
-    varMap = options.varMap or= {}
-    filter = options.filter or= {}
+    tplFiles = path.join @tplPath, '**/*.html'
 
-    template = nunjucks.configure tplPath,
+    watch = new gaze.Gaze tplFiles
+    watch.on 'all', (event, filepath)=>
+        # console.log event, filepath
+        return if !@stats
+        @build @stats
+        if @compiler._server and @compiler._server.socketSendData
+            # console.log @compiler._server.sockets, @stats.hash
+            # @compiler._server._sendStats @compiler._server.sockets, @stats.toJson()
+            @compiler._server.socketSendData(
+                @compiler._server.sockets,
+                @stats.toJson(),
+                null,
+                'changeTpl',
+                [tplFiles]
+            )
+
+    @template = nunjucks.configure @tplPath,
         autoescape: false
 
-    ->
-        @plugin 'done', (stats)->
-            packMap = stats.toJson().assetsByChunkName
-            packs = Object.keys packMap
+    return
 
-            renderData =
-                module: {}
+BuildHtml::build = (stats)->
+    packMap = stats.toJson().assetsByChunkName
+    packs = Object.keys packMap
 
-            for key, val of varMap
-                renderData[key] = val()
+    renderData =
+        module: {}
 
-            # 注册 module:name
-            packs.forEach (pack)->
-                if Array.isArray(packMap[pack])
-                    renderData.module[pack] = packMap[pack][0]
-                    # varMap['module:' + pack] = -> packMap[pack][0]
+    for key, val of @varMap
+        renderData[key] = val()
 
-                    packMap[pack].forEach (filename)->
-                        renderData.module["#{pack}#{path.extname filename}"] = filename
+    # 注册 module:name
+    packs.forEach (pack)->
+        if Array.isArray(packMap[pack])
+            renderData.module[pack] = packMap[pack][0]
 
-                else
-                    renderData.module[pack] = packMap[pack]
-                    renderData.module[pack + '.js'] = packMap[pack]
-                    renderData.module[pack + '.css'] = ''
+            packMap[pack].forEach (filename)->
+                renderData.module["#{pack}#{path.extname filename}"] = filename
+
+        else
+            renderData.module[pack] = packMap[pack]
+            renderData.module[pack + '.js'] = packMap[pack]
+            renderData.module[pack + '.css'] = ''
 
 
-            template.addFilter 'url', (moduelName, staticPath = renderData.staticPath, env = renderData.env)->
-                "#{staticPath}dist/#{env}/#{renderData.module[moduelName]}"
+    @template.addFilter 'url', (moduelName, staticPath = renderData.staticPath, env = renderData.env)->
+        "#{staticPath}dist/#{env}/#{renderData.module[moduelName]}"
 
-            for name, callback of filter
-                template.addFilter name, callback, callback.isSync
+    for v in getDep(@tplPath, @outPath)
+        # 替换模板
+        tpl = fs.readFileSync v.soure, 'utf8'
 
-            for v in getDep(tplPath, outPath)
-                # 替换模板
-                tpl = fs.readFileSync v.soure, 'utf8'
+        tpl = @template.renderString tpl, renderData
+        # console.log tpl
 
-                tpl = template.renderString tpl, renderData
+        fs.writeFileSync v.out, tpl, 'utf8'
 
-                fs.writeFileSync v.out, tpl, 'utf8'
+
+BuildHtml::apply = (compiler)->
+    @compiler = compiler
+    compiler.plugin 'done', (stats)=>
+        @stats = stats
+        @build stats
+
+
+module.exports = BuildHtml
