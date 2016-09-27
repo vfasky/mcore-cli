@@ -29,7 +29,7 @@ getDep = (tplPath, outPath)->
 
 BuildHtml = (options = {})->
     @tplPath = options.tplPath or= ''
-    @outPath = options.outPath or = ''
+    @outPath = options.outPath or= ''
     @varMap = options.varMap or= {}
     @stats = null
 
@@ -53,6 +53,7 @@ BuildHtml = (options = {})->
 
     @template = nunjucks.configure @tplPath,
         autoescape: false
+        noCache: true
 
     return
 
@@ -87,10 +88,13 @@ BuildHtml::build = (stats)->
         # 替换模板
         tpl = fs.readFileSync v.soure, 'utf8'
 
-        tpl = @template.renderString tpl, renderData
-        # console.log tpl
+        try
+            tpl = @template.renderString tpl, renderData
+            fs.writeFileSync v.out, tpl, 'utf8'
 
-        fs.writeFileSync v.out, tpl, 'utf8'
+        catch error
+            console.error error
+
 
 
 BuildHtml::apply = (compiler)->

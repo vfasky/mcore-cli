@@ -77,7 +77,6 @@ let config = {
             require('postcss-assets')({
                 relative: true,
                 loadPaths: ['./images'],
-                cachebuster: true
             }),
             require('postcss-at2x')(),
         ];
@@ -143,6 +142,7 @@ config.buildEnv = function(envName, staticPath) {
     config.output.publicPath = config.staticPath + 'dist/' + envName + '/';
     config.output.path = path.join(__dirname, 'dist/' + envName);
     config.output.filename = '[name].[chunkhash].js';
+    config.output.chunkFilename = '[name].[chunkhash].js';
 
     config.resolve.alias.env = path.join(__dirname, 'src/env/' + envName);
 
