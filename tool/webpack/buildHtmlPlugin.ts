@@ -14,7 +14,7 @@ import * as nunjucks from 'nunjucks'
 import * as chokidar from 'chokidar'
 
 
-interface PathInfo {
+interface pathInfo {
     soure: string; // html file path
     relative: string; // soure path
     out: string; // out path
@@ -25,11 +25,11 @@ interface PathInfo {
  * @param tplPath 模板目录
  * @param outPath 输出目录
  */
-function getDep (tplPath:string, outPath:string):PathInfo[] {
+function getDep (tplPath:string, outPath:string):pathInfo[] {
     
     // 读模板文件
     let tplFiles = glob.sync(path.join(tplPath, '**/*.html'))
-    let data:PathInfo[] = []
+    let data:pathInfo[] = []
     
     tplFiles.forEach((htmlFile) => {
         let relative = path.relative(tplPath, htmlFile)
@@ -85,7 +85,7 @@ export default class BuildHtml {
         this.watch()
     }
     
-    apply (compiler:any) {
+    apply (compiler:any):void {
         this.compiler = compiler
         compiler.plugin('done', (stats:any) => {
             this.stats = stats
