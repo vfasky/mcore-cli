@@ -5,7 +5,7 @@
 * @link
 */
 
-import {View} from 'mcore3';
+import {View} from 'mcore3'
 
 export default class BaseView extends View {
 }

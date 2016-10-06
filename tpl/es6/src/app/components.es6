@@ -3,7 +3,7 @@
 */
 
 // tag
-import '../tag/hello/hello';
+import '../tag/hello/hello'
 
 // formatters
-import '../formatters/bg';
+import '../formatters/bg'

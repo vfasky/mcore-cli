@@ -5,14 +5,13 @@
 * @link
 */
 
-export default function(app, done = ()=>{}) {
-
-    function route(rule, view) {
-        app.route(rule, view.default);
-        return route;
+export default function (app, done = () => {}) {
+    function route (rule, view) {
+        app.route(rule, view.default)
+        return route
     }
 
     route('/', require('../view/index'))
 
-    done();
+    done()
 }

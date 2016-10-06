@@ -1,10 +1,10 @@
 
-import {Template, util} from 'mcore3';
+import {Template} from 'mcore3'
 
 Template.formatters['bg'] = function (imgUrl) {
     if (!imgUrl) {
-        return '';
+        return ''
     }
 
-    return `background-image: url(${imgUrl});`;
+    return `background-image: url(${imgUrl});`
 }

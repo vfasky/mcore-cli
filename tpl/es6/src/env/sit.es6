@@ -2,8 +2,8 @@
  * sit config
  */
 
-import config from './dev';
+import config from './dev'
 
-config.env = 'sit';
+config.env = 'sit'
 
-export default config;
+export default config

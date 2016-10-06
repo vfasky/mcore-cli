@@ -2,8 +2,8 @@
  * uat config
  */
 
-import config from './dev';
+import config from './dev'
 
-config.env = 'uat';
+config.env = 'uat'
 
-export default config;
+export default config

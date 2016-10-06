@@ -2,8 +2,8 @@
  * deploy config
  */
 
-import config from './dev';
+import config from './dev'
 
-config.env = 'deploy';
+config.env = 'deploy'
 
-export default config;
+export default config

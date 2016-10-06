@@ -5,16 +5,16 @@
 * @link
 */
 
-import "../sass/app.scss";
+import '../sass/app.scss'
 
-import {App} from 'mcore3';
-import $ from 'jquery';
-import route from './route';
+import {App} from 'mcore3'
+import $ from 'jquery'
+import route from './route'
 
-import './components';
+import './components'
 
-let app = new App($('#main'));
+let app = new App($('#main'))
 
-route(app, function() {
-    app.run();
-});
+route(app, () => {
+    app.run()
+})
