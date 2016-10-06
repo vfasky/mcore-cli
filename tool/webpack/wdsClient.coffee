@@ -6,7 +6,7 @@ _hash = null
 socket '/sockjs-node',
     changeFile: (changedFiles)->
         isScript = false
-        scriptTypes = ['.coffee', '.js', '.tpl', '.es6']
+        scriptTypes = ['.coffee', '.js', '.tpl', '.es6', '.html']
         for file in changedFiles
             extname = path.extname file
             if extname in scriptTypes
