@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dashboard -- node ./build/webpack.config.js",
-    "sit": "ENV=sit webpack --config ./build/webpack.config.js --profile",
-    "uat": "ENV=uat webpack --config ./build/webpack.config.js --profile",
-    "deploy": "ENV=deploy webpack --config ./build/webpack.config.js --profile",
-    "svg": "webpack --config ./build/webpack.svg.js",
+    "dev": "./node_modules/.bin/webpack-dashboard -- node ./webpack.config.js",
+    "sit": "ENV=sit webpack --profile",
+    "uat": "ENV=uat webpack --profile",
+    "deploy": "ENV=deploy webpack --profile",
+    "svg": "webpack --config ./webpack.svg.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,5 +24,32 @@
   "dependencies": {
   },
   "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "bourbon": "^4.2.7",
+    "clean-webpack-plugin": "^0.1.10",
+    "coffee-script": "^1.10.0",
+    "css-loader": "^0.25.0",
+    "expose": "^0.1.4",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "fs-plus": "^2.9.2",
+    "gaze": "^1.1.1",
+    "glob": "^7.1.0",
+    "jquery": "^3.1.0",
+    "mcore3": "^3.0.26",
+    "moment": "^2.13.0",
+    "node-sass": "^3.10.0",
+    "nunjucks": "^2.5.2",
+    "open-browser-webpack-plugin": "0.0.2",
+    "postcss": "^5.2.0",
+    "postcss-assets": "^4.1.0",
+    "postcss-at2x": "^2.0.0",
+    "postcss-loader": "^0.13.0",
+    "sass-loader": "^4.0.2",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dashboard": "^0.1.8",
+    "webpack-dev-server": "^1.16.1",
+    "webpack-svgstore-plugin": "^3.0.4"
   }
 }

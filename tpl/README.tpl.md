@@ -1,6 +1,6 @@
-# ${projectName}
+# ${name}
 
-> ${projectDesc}
+> ${desc}
 
 ## Build Setup
 

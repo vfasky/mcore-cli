@@ -15,11 +15,11 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const WebpackDevServer = require('webpack-dev-server');
 
 const CleanPlugin = require('clean-webpack-plugin');
-const ChangeFilesPlugin = require('mcore-cli/tool/webpack/changeFilesPlugin');
-const BuildHtml = require('mcore-cli/tool/webpack/buildHtmlPlugin');
+const ChangeFilesPlugin = require('./tool/webpack/changeFilesPlugin');
+const BuildHtml = require('./tool/webpack/buildHtmlPlugin');
 
 process.env.ENV = process.env.ENV || 'dev';
-process.env.PORT = process.env.PORT || 8080;
+process.env.PORT = process.env.PORT || 3000;
 
 // dev server host
 const devHost = 'http://localhost:'+ process.env.PORT +'/';
@@ -28,42 +28,47 @@ let config = {
     staticPath: '/',
     env: process.env.ENV,
     entry: {
-        app: path.join(__dirname, 'src/app/app'),
+        app: path.join(__dirname, './src/app/app'),
         vendor: [
             'jquery',
             'mcore3',
-            path.join(__dirname, 'src/sass/app.scss'),
+            path.join(__dirname, './src/sass/app.scss'),
         ]
     },
     output: {
         path: path.join(__dirname, 'dist', process.env.ENV),
         filename: '[name].js',
-        chunkFilename: '[name].js',
-        libraryTarget: 'umd',
+        chunkFilename: '[name].js'
     },
     module: {
         loaders: [{
+            test: /\.es6$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+        }, {
             test: /\.coffee$/,
             loader: "coffee-loader"
         }, {
             test: /\.tpl$/,
             exclude: /node_modules/,
-            loader: path.resolve(__dirname, 'node_modules/mcore3/dist/h2svd-loader.js')
+            loader: path.resolve(__dirname, './node_modules/mcore3/dist/h2svd-loader.js')
         }, {
             test: /\.(jpe?g|png|gif|svg)$/i,
-            loader: 'url?limit=10000&name=images/[hash:8].[name].[ext]'
+            loader: 'url?limit=2048&name=images/[hash:8].[name].[ext]'
         }, {
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: "url?limit=10000&name=font/[hash:8].[name].[ext]&mimetype=application/font-woff"
+            loader: "url?limit=2048&name=font/[hash:8].[name].[ext]&mimetype=application/font-woff"
         }, {
             test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: "url?limit=10000&name=font/[hash:8].[name].[ext]"
+            loader: "url?limit=2048&name=font/[hash:8].[name].[ext]"
         }, {
             test: /\.scss$/,
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/,
             loader: ExtractTextPlugin.extract([
-                'css?sourceMap',
-                'postcss?sourceMap',
-                'sass?config=sassConfig&sourceMap'
+                'css',
+                'postcss',
+                'sass?config=sassConfig'
             ])
         }, {
             test: /jquery[!mcore]/,
@@ -83,21 +88,21 @@ let config = {
         ];
     },
     sassConfig: {
-
+        sourceComments: true,
         includePaths: [
             require('bourbon').includePaths,
-            path.join(__dirname, 'node_modules'),
+            path.join(__dirname, './node_modules'),
         ]
     },
     resolve: {
-        extensions: ['', '.coffee', '.js'],
+        extensions: ['', '.es6', '.js', '.coffee'],
 
         modulesDirectories: [
-            path.join(__dirname, 'node_modules')
+            path.join(__dirname, './node_modules')
         ],
 
         alias: {
-            env: path.join(__dirname, 'src/env', process.env.ENV),
+            env: path.join(__dirname, './src/env', process.env.ENV),
         }
     },
     externals: {
@@ -115,8 +120,8 @@ let config = {
         }),
         new DashboardPlugin(),
         new BuildHtml({
-            tplPath: path.join(__dirname, 'outTpl'),
-            outPath: path.join(__dirname),
+            tplPath: path.join(__dirname, './outTpl'),
+            outPath: path.join(__dirname, './'),
             varMap: {
                 staticPath: function() {
                     return config.staticPath;
@@ -141,15 +146,15 @@ config.buildEnv = function(envName, staticPath) {
     config.sassConfig.outputStyle = 'compressed';
 
     config.output.publicPath = config.staticPath + 'dist/' + envName + '/';
-    config.output.path = path.join(__dirname, 'dist/' + envName);
+    config.output.path = path.join(__dirname, './dist/' + envName);
     config.output.filename = '[name].[chunkhash].js';
     config.output.chunkFilename = '[name].[chunkhash].js';
 
-    config.resolve.alias.env = path.join(__dirname, 'src/env/' + envName);
+    config.resolve.alias.env = path.join(__dirname, './src/env/' + envName);
 
     config.plugins.push(new ExtractTextPlugin('style/css/[name].[contenthash:8].css'));
-    config.plugins.push(new CleanPlugin('dist/dev'));
-    config.plugins.push(new CleanPlugin('dist/' + envName));
+    config.plugins.push(new CleanPlugin('./dist/dev'));
+    config.plugins.push(new CleanPlugin('./dist/' + envName));
 
     config.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
@@ -183,7 +188,7 @@ switch (process.env.ENV) {
             new ChangeFilesPlugin()
         );
 
-        config.entry.vendor.push(path.join(__dirname, 'node_modules/mcore-cli/tool/webpack/wdsClient'));
+        config.entry.vendor.push(path.join(__dirname, './tool/webpack/wdsClient'));
         let compiler = webpack(config);
 
         WebpackDevServer.prototype.socketSendData = function(sockets, stats, force, type, data){
@@ -195,9 +200,10 @@ switch (process.env.ENV) {
             // compress: true,
             publicPath: config.output.publicPath,
             stats: {
-    			colors: true
-    		}
+                colors: true
+            }
         });
+
         compiler._server = server;
         // console.log(compiler);
         server.listen(process.env.PORT);

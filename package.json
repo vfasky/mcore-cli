@@ -1,6 +1,6 @@
 {
   "name": "mcore-cli",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -46,6 +46,7 @@
     "webpack-dev-server": "^1.16.1"
   },
   "devDependencies": {
+    "js-beautify": "^1.6.4",
     "yargs": "^6.0.0"
   }
 }
