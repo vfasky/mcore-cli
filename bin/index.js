@@ -83,6 +83,7 @@ if (packageJsonTpl.scripts &&
 
 // 生成依赖
 if (args.type == 'es6') {
+    packageJsonTpl.scripts.fix = "./node_modules/.bin/eslint src/**/*.es6 --fix"
     Object.assign(packageJsonTpl, {
         "babel-core": "^6.0.0",
         "babel-eslint": "^6.1.2",
@@ -91,6 +92,11 @@ if (args.type == 'es6') {
         "babel-preset-es2015": "^6.0.0",
         "babel-preset-es2015-ie": "^6.6.2",
         "babel-preset-stage-2": "^6.0.0",
+        "eslint": "^3.7.1",
+        "eslint-config-standard": "^6.2.0",
+        "eslint-plugin-promise": "^2.0.1",
+        "eslint-plugin-standard": "^2.0.1",
+        "eslint-plugin-html": "^1.5.3",
     });
 }
 
