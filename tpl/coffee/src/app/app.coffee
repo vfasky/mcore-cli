@@ -11,5 +11,5 @@ app = new App $('#main')
 
 $(document.body).removeClass 'loading'
 
-app.route '/', require '../view/index'
+app.route '/', require '../view/index/index'
    .run()

@@ -1,27 +1,32 @@
 {
-  "name": "mcore-cli",
-  "version": "1.1.0",
+  "name": "mcore-app",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "./node_modules/.bin/webpack-dashboard -- node ./webpack.config.js",
+    "sit": "ENV=sit webpack --profile",
+    "uat": "ENV=uat webpack --profile",
+    "deploy": "ENV=deploy webpack --profile",
+    "svg": "webpack --config ./webpack.svg.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vfasky/mcore-cli.git"
+
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/vfasky/mcore-cli/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/vfasky/mcore-cli#readme",
+  "homepage": "",
   "dependencies": {
+  },
+  "devDependencies": {
     "autoprefixer": "^6.4.1",
     "bourbon": "^4.2.7",
     "clean-webpack-plugin": "^0.1.10",
-    "coffee-loader": "^0.7.2",
     "coffee-script": "^1.10.0",
     "css-loader": "^0.25.0",
     "expose": "^0.1.4",
@@ -31,7 +36,8 @@
     "gaze": "^1.1.1",
     "glob": "^7.1.0",
     "jquery": "^3.1.0",
-    "mcore3": "^3.0.18",
+    "mcore3": "^3.0.26",
+    "moment": "^2.13.0",
     "node-sass": "^3.10.0",
     "nunjucks": "^2.5.2",
     "open-browser-webpack-plugin": "0.0.2",
@@ -43,10 +49,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
     "webpack-dashboard": "^0.1.8",
-    "webpack-dev-server": "^1.16.1"
-  },
-  "devDependencies": {
-    "js-beautify": "^1.6.4",
-    "yargs": "^6.0.0"
+    "webpack-dev-server": "^1.16.1",
+    "webpack-svgstore-plugin": "^3.0.4"
   }
 }
