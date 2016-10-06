@@ -51,6 +51,7 @@ interface buildHtmlOptions {
     tplPath: string;
     outPath: string;
     varMap?: any;
+    callback?: any;
 }
 
 /**
@@ -60,6 +61,7 @@ export default class BuildHtml {
     tplPath: string;
     outPath: string;
     varMap: any;
+    buildCallback: any;
     /**
      * webpack compiler status
      */
@@ -76,6 +78,7 @@ export default class BuildHtml {
         this.outPath = options.outPath
         this.varMap = options.varMap || {}
         this.stats = null
+        this.buildCallback = options.callback || function(){}
         
         this.template = nunjucks.configure(this.tplPath, {
             autoescape: false,
@@ -167,6 +170,8 @@ export default class BuildHtml {
             }
             return `${staticPath}dist/${env}/${renderData.module[moduleName]}`
         })
+        
+        this.buildCallback(renderData)
         
         getDep(this.tplPath, this.outPath).forEach((v) => {
             let tpl = fs.readFileSync(v.soure, 'utf8')
