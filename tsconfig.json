@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "target": "es6",
+        "sourceMap": true,
+        "types": ["request"],
+        "typeRoots": [ "node_modules/@types/"]
+    },
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
