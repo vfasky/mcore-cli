@@ -45,5 +45,7 @@
     "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.16.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "yargs": "^6.0.0"
+  }
 }

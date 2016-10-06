@@ -1,0 +1,28 @@
+{
+  "name": "mcore-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/webpack-dashboard -- node ./build/webpack.config.js",
+    "sit": "ENV=sit webpack --config ./build/webpack.config.js --profile",
+    "uat": "ENV=uat webpack --config ./build/webpack.config.js --profile",
+    "deploy": "ENV=deploy webpack --config ./build/webpack.config.js --profile",
+    "svg": "webpack --config ./build/webpack.svg.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

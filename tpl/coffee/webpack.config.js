@@ -166,8 +166,7 @@ console.log('----------------------------');
 
 switch (process.env.ENV) {
     case 'sit':
-        module.exports = config.buildEnv(process.env.ENV);
-        break;
+    case 'uat':
     case 'deploy':
         module.exports = config.buildEnv(process.env.ENV);
         break;
