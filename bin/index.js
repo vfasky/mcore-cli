@@ -83,7 +83,7 @@ if (packageJsonTpl.scripts &&
 
 // 生成依赖
 if (args.type == 'es6') {
-    packageJsonTpl.scripts.fix = "./node_modules/.bin/eslint src/**/*.es6 --fix"
+    packageJsonTpl.scripts.fix = "eslint src/**/*.es6 --fix"
     Object.assign(packageJsonTpl.devDependencies, {
         "babel-core": "^6.0.0",
         "babel-eslint": "^6.1.2",

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dashboard -- node ./webpack.config.js",
+    "dev": "webpack-dashboard -- node ./webpack.config.js",
     "sit": "ENV=sit webpack --profile",
     "uat": "ENV=uat webpack --profile",
     "deploy": "ENV=deploy webpack --profile",
