@@ -14,7 +14,7 @@ export default class WatchFile {
     apply (compiler: any) {
         compiler.plugin('emit', (compilation: any, callback: any) => {
             let changedFiles = Object.keys(compilation.fileTimestamps).filter((watchfile)=> {
-                (this.prevTimestamps[watchfile] || this.startTime) < (compilation.fileTimestamps[watchfile] || Infinity)
+                return (this.prevTimestamps[watchfile] || this.startTime) < (compilation.fileTimestamps[watchfile] || Infinity)
             })
 
             if (compiler._server && compiler._server.socketSendData && compiler._server._stats) {

@@ -52,7 +52,7 @@ var cliPackage = require('../package.json');
 
 if (args.version) {
     console.log(cliPackage.version);
-    return false;
+    return false
 }
 
 // 复制模板目录

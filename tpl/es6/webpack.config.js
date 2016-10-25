@@ -93,17 +93,14 @@ let config = {
     sassConfig: {
         sourceComments: true,
         includePaths: [
+            path.resolve('./src/sass'),
             require('bourbon').includePaths,
             path.join(__dirname, './node_modules')
         ]
     },
     resolve: {
-        extensions: ['', '.es6', '.js', '.coffee'],
-
-        modulesDirectories: [
-            path.join(__dirname, './node_modules')
-        ],
-
+        modulesDirectories: ['node_modules', './src'],
+        extensions: ['', '.es6', '.js', '.coffee', '.scss'],
         alias: {
             env: path.join(__dirname, './src/env', process.env.ENV)
         }
@@ -121,7 +118,6 @@ let config = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
         }),
-        new DashboardPlugin(),
         new BuildHtml({
             tplPath: path.join(__dirname, './outTpl'),
             outPath: path.join(__dirname, './'),
@@ -154,7 +150,7 @@ config.buildEnv = function (envName, staticPath) {
 
     config.resolve.alias.env = path.join(__dirname, './src/env/' + envName)
 
-    config.plugins.push(new ExtractTextPlugin('style/css/[name].[contenthash:8].css'))
+    config.plugins.push(new ExtractTextPlugin('style/[name].[contenthash:8].css'))
     config.plugins.push(new CleanPlugin('./dist/dev'))
     config.plugins.push(new CleanPlugin('./dist/' + envName))
 
@@ -186,9 +182,8 @@ switch (process.env.ENV) {
         }))
         config.plugins.push(new ExtractTextPlugin('style/[name].css'))
 
-        config.plugins.push(
-            new ChangeFilesPlugin()
-        )
+        config.plugins.push(new ChangeFilesPlugin())
+        config.plugins.push(new DashboardPlugin())
 
         config.entry.vendor.push(path.join(__dirname, './tool/webpack/wdsClient'))
         let compiler = webpack(config)
