@@ -1,5 +1,5 @@
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
-/// <reference path="../../definition/fs-plus/fs-plus.d.ts" />
+/// <reference path="../../definition/fs-plus.d.ts" />
 /**
  * build html for webpack plugin
  * @author vfasky<vfasky@gmail.com>
@@ -65,11 +65,11 @@ export default class BuildHtml {
     /**
      * webpack compiler status
      */
-    stats: null|any;
+    stats: any;
     /**
      * webpack compiler
      */
-    compiler: null|any;
+    compiler: any;
     
     template: nunjucks.Environment
     

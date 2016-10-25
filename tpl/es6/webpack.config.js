@@ -4,7 +4,7 @@
  **/
 'use strict'
 
-require('coffee-script/register')
+// require('coffee-script/register')
 
 const path = require('path')
 // const fs = require('fs')
@@ -15,8 +15,11 @@ const DashboardPlugin = require('webpack-dashboard/plugin')
 const WebpackDevServer = require('webpack-dev-server')
 
 const CleanPlugin = require('clean-webpack-plugin')
-const ChangeFilesPlugin = require('./tool/webpack/changeFilesPlugin')
-const BuildHtml = require('./tool/webpack/buildHtmlPlugin')
+const ChangeFilesPluginESM = require('./tool/webpack/changeFilesPlugin')
+const BuildHtmlESM = require('./tool/webpack/buildHtmlPlugin')
+
+const ChangeFilesPlugin = ChangeFilesPluginESM['default']
+const BuildHtml = BuildHtmlESM['default']
 
 process.env.ENV = process.env.ENV || 'dev'
 process.env.PORT = process.env.PORT || 3000
