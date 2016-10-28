@@ -53,7 +53,6 @@ let config = {
             loader: 'coffee-loader'
         }, {
             test: /\.tpl$/,
-            exclude: /node_modules/,
             loader: path.resolve(__dirname, './node_modules/mcore3/dist/h2svd-loader.js')
         }, {
             test: /\.(jpe?g|png|gif|svg)$/i,
@@ -67,7 +66,6 @@ let config = {
         }, {
             test: /\.scss$/,
             include: path.join(__dirname, './src'),
-            exclude: /node_modules/,
             loader: ExtractTextPlugin.extract([
                 'css',
                 'postcss',
