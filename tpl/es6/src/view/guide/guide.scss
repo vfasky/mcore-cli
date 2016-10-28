@@ -1,0 +1,124 @@
+@import 'base/base';
+
+.view-guide {
+    $color-black: #4a4a4a;
+    display: flex;
+    height: calc(100vh);
+    overflow: hidden;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .color-red {
+        color: red;
+    }
+
+    .tc {
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    aside {
+        width: 190px;
+        background: $color-black;
+
+        .logo {
+            height: 100px;
+            background: shade($color-black, 50%);
+            color: #fff;
+            text-align: center;
+        }
+
+        ul {
+            width: 100%;
+        }
+
+        li {
+            height: 50px;
+            line-height: 50px;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover {
+                background: tint($color-black, 10%);
+            }
+
+            &.cur {
+                background: $color-primary;
+            }
+        }
+    }
+
+
+    article {
+        flex: 1;
+        padding: 0 56px;
+        overflow: auto;
+
+        h1 {
+            text-align: center;
+            padding: 50px;
+            color: #333;
+            font-size: 48px;
+        }
+
+        p {
+            line-height: 1.5;
+            font-size: 18px;
+            text-indent: 2em;
+        }
+
+        a {
+            color: $color-primary;
+        }
+    }
+
+    .cmd {
+        text-align: center;
+        display: inline-block;
+        width: 400px;
+
+        li {
+            display: flex;
+            text-align: left;
+        }
+
+        span {
+            flex: 1;
+            padding: 5px 10px;
+            font-size: 24px;
+
+            &:first-child {
+                text-align: right;
+            }
+        }
+    }
+
+    .dir {
+        list-style: initial;
+        padding: 10px 40px;
+
+        ul {
+            font-size: 14px;
+            padding: 10px 28px;
+        }
+    }
+
+    .code {
+        font-size: 16px;
+        background: #efefef;
+        border-radius: 5px;
+        line-height: 1.5;
+        padding: 20px;
+        margin: 10px 0;
+    }
+
+}

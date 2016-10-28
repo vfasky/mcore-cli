@@ -3,7 +3,8 @@
 */
 
 // tag
-import 'tag/hello/hello'
+import 'tag/svgicon'
+import 'tag/hello'
 
 // formatters
 import 'formatters/bg'

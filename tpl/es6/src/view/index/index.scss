@@ -1,3 +1,28 @@
+@import 'base/base';
+
 .view-index {
-    color: green;
+    text-align: center;
+
+    p {
+        font-size: 24px;
+    }
+
+    a {
+        color: $color-primary;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .star {
+        color: red;
+        margin-right: 10px;
+    }
+
+    .tips {
+        margin-top: 20px;
+        font-size: 16px;
+    }
 }

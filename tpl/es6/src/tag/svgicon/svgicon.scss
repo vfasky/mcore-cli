@@ -1,0 +1,30 @@
+// svg 图标
+.svg-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    color: inherit;
+    stroke: currentColor;
+}
+
+.svg-fill {
+    fill: currentColor;
+    stroke: none;
+}
+
+.svg-up {
+    transform: rotate(-90deg);
+}
+
+.svg-right {
+}
+
+.svg-down {
+    transform: rotate(90deg);
+}
+
+.svg-left {
+    transform: rotate(180deg);
+}

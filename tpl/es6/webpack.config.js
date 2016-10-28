@@ -91,7 +91,6 @@ let config = {
         ]
     },
     sassConfig: {
-        sourceComments: true,
         includePaths: [
             path.resolve('./src/sass'),
             require('bourbon').includePaths,
@@ -102,7 +101,8 @@ let config = {
         modulesDirectories: ['node_modules', './src'],
         extensions: ['', '.es6', '.js', '.coffee', '.scss'],
         alias: {
-            env: path.join(__dirname, './src/env', process.env.ENV)
+            env: path.join(__dirname, './src/env', process.env.ENV),
+            svg: path.resolve('./svg/dist/svg')
         }
     },
     externals: {

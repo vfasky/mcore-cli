@@ -9,6 +9,8 @@ import {App} from 'mcore3'
 import $ from 'jquery'
 import route from './route'
 
+import 'svg'
+
 import './components'
 
 let app = new App($('#main'))

@@ -16,5 +16,5 @@ mcore-cli -h
 mcore-cli -i [project_path]  -n [project_name] -t [project_type] -p [port]
 ```
 
-1. project_type: 'es6', 'coffee'
+1. project_type: 'es6'
 2. port:  The http port to run project
