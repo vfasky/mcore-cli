@@ -2,19 +2,22 @@
 A command line tool to generate mcore3 project.
 
 ## install
-```bash
+``` bash
 npm install -g mcore-cli
 ```
 
 ## usage
 
-```bash
+``` bash
 # view help
-mcore-cli -h
+mcore-cli help
+mcore-cli init --help
+mcore-cli add --help
 
 # command
-mcore-cli -i [project_path]  -n [project_name] -t [project_type] -p [port]
+mcore-cli init [project_path] -n [project_name] -l [project_language] -p [port]
+mcore-cli add <componentName> -t view --path ./pack
 ```
 
-1. project_type: 'es6'
-2. port:  The http port to run project
+# Add component
+componentName can use a path, like:  staff/guide
