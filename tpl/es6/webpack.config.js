@@ -193,6 +193,7 @@ switch (process.env.ENV) {
 
         let server = new WebpackDevServer(compiler, {
             // compress: true,
+            contentBase: './',
             publicPath: config.output.publicPath,
             stats: {
                 colors: true

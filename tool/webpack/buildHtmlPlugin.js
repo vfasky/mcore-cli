@@ -1,5 +1,5 @@
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
-/// <reference path="../../definition/fs-plus/fs-plus.d.ts" />
+/// <reference path="../../definition/fs-plus.d.ts" />
 /**
  * build html for webpack plugin
  * @author vfasky<vfasky@gmail.com>

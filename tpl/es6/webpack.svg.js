@@ -2,7 +2,7 @@ const path = require('path')
 // const webpack = require('webpack')
 const SvgStore = require('webpack-svgstore-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
-const buildSVGHtml = require('./svg/buildSVGHtml')
+const buildSVGHtml = require('./tool/webpack/buildSVGHtml').default
 
 module.exports = {
     entry: {
@@ -36,7 +36,7 @@ module.exports = {
             }
         }),
         function () {
-            buildSVGHtml(path.resolve('svg/dist/icons.html'))
+            buildSVGHtml(path.resolve('svg/dist/icons.html'), path.resolve('svg/src'))
         }
     ]
 }

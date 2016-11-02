@@ -1,3 +1,6 @@
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
+/// <reference path="../../definition/fs-plus.d.ts" />
+
 /**
 * 生成 svg 的 html 文件
 * @date 2016-09-07 16:45:03
@@ -5,23 +8,22 @@
 * @link http://www.allenice233.com
 */
 
-'use strict'
+import * as path from 'path'
+import * as fs from 'fs'
 
-let path = require('path')
-let fs = require('fs')
 
-module.exports = function (htmlPath) {
-    fs.readdir(path.join(__dirname, './src'), function (err, files) {
+export default function(htmlPath:string, iconPath:string) {
+
+    fs.readdir(iconPath, function(err, files) {
         if (err) {
             console.log(err)
-            return false
         }
 
-        let listHtml = '<ul>'
+        let listHtml:string = '<ul>'
 
         files.forEach(function (filename) {
             if (path.extname(filename) === '.svg') {
-                let name = path.basename(filename, '.svg')
+                let name:string = path.basename(filename, '.svg')
 
                 listHtml += `
                     <li>
@@ -43,7 +45,7 @@ module.exports = function (htmlPath) {
 
         listHtml += '</ul>'
 
-        let html = `
+        let html:string = `
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -125,4 +127,5 @@ module.exports = function (htmlPath) {
 
         fs.writeFileSync(htmlPath, html, 'utf8')
     })
+
 }
