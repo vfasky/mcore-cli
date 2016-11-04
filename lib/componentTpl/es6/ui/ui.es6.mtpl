@@ -1,0 +1,14 @@
+/**
+* [desc]
+* @date ${curDate}
+* @author 
+* @link 
+*/
+
+import Base from '../base'
+
+export default class ${ComponentName} extends Base {
+    init () {
+        this.render(require('./${componentName}.tpl'))
+    }
+}

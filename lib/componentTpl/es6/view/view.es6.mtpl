@@ -1,0 +1,19 @@
+/**
+* [desc]
+* @date ${curDate}
+* @author 
+* @link 
+*/
+
+import View from '../base'
+
+export default class ${ComponentName} extends View {
+
+    static get viewName() {
+        return '${componentPath}'
+    }
+
+    run () {
+        this.render(require('./${componentName}.tpl'))
+    }
+}

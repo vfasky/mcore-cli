@@ -1,0 +1,12 @@
+/**
+* [desc]
+* @date ${curDate}
+* @author 
+* @link 
+*/
+
+import {Template} from 'mcore3'
+
+Template.binders['${componentCssName}'] = function (el, value) {
+    
+}
