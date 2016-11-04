@@ -61,7 +61,6 @@
     "@types/node": "^6.0.45",
     "@types/nunjucks": "0.0.32",
     "js-beautify": "^1.6.4",
-    "typescript": "^2.0.3",
     "yargs": "^6.0.0"
   }
 }

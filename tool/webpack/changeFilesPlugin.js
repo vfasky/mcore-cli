@@ -24,5 +24,6 @@ var WatchFile = (function () {
     };
     return WatchFile;
 }());
-exports.__esModule = true;
-exports["default"] = WatchFile;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = WatchFile;
+//# sourceMappingURL=changeFilesPlugin.js.map

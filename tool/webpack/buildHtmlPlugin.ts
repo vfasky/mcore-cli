@@ -52,6 +52,7 @@ interface buildHtmlOptions {
     outPath: string;
     varMap?: any;
     callback?: any;
+    filters?: any;
 }
 
 /**
@@ -62,6 +63,7 @@ export default class BuildHtml {
     outPath: string;
     varMap: any;
     buildCallback: any;
+    filters: any;
     /**
      * webpack compiler status
      */
@@ -77,12 +79,17 @@ export default class BuildHtml {
         this.tplPath = options.tplPath
         this.outPath = options.outPath
         this.varMap = options.varMap || {}
+        this.filters = options.filters || {}
         this.stats = null
         this.buildCallback = options.callback || function(){}
         
         this.template = nunjucks.configure(this.tplPath, {
             autoescape: false,
             noCache: true
+        })
+
+        Object.keys(this.filters).forEach((name) => {
+            this.template.addFilter(name, this.filters[name])
         })
         
         this.watch()
