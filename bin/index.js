@@ -74,7 +74,7 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
     }
 
     // 生成依赖
-    if (args.type === 'es6') {
+    if (args.lang === 'es6') {
         packageJsonTpl.scripts.fix = 'eslint src/**/*.es6 --fix'
         Object.assign(packageJsonTpl.devDependencies, {
             'babel-core': '^6.0.0',
