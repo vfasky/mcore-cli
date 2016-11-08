@@ -1,5 +1,5 @@
-@import 'base/base';
+@import "base/base";
 
 .view-${componentCssName} {
-    
+    // code
 }

@@ -1,4 +1,4 @@
-@import 'base/base';
+@import "base/base";
 
 .view-guide {
     $color-black: #4a4a4a;
@@ -19,9 +19,9 @@
     }
 
     ul {
-        list-style: none;
-        padding: 0;
         margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
     aside {
@@ -41,10 +41,10 @@
 
         li {
             height: 50px;
-            line-height: 50px;
             padding-left: 20px;
-            font-size: 14px;
             color: #fff;
+            font-size: 14px;
+            line-height: 50px;
             cursor: pointer;
 
             &:hover {
@@ -64,15 +64,15 @@
         overflow: auto;
 
         h1 {
-            text-align: center;
             padding: 50px;
             color: #333;
             font-size: 48px;
+            text-align: center;
         }
 
         p {
-            line-height: 1.5;
             font-size: 18px;
+            line-height: 1.5;
             text-indent: 2em;
         }
 
@@ -82,9 +82,9 @@
     }
 
     .cmd {
-        text-align: center;
         display: inline-block;
         width: 400px;
+        text-align: center;
 
         li {
             display: flex;
@@ -103,22 +103,22 @@
     }
 
     .dir {
-        list-style: initial;
         padding: 10px 40px;
+        list-style: initial;
 
         ul {
-            font-size: 14px;
             padding: 10px 28px;
+            font-size: 14px;
         }
     }
 
     .code {
-        font-size: 16px;
-        background: #efefef;
-        border-radius: 5px;
-        line-height: 1.5;
-        padding: 20px;
         margin: 10px 0;
+        padding: 20px;
+        border-radius: 5px;
+        background: #efefef;
+        font-size: 16px;
+        line-height: 1.5;
     }
 
 }

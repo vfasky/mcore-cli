@@ -5,7 +5,7 @@
 * @link 
 */
 
-import View from '../base'
+import View from 'view/base'
 
 export default class ${ComponentName} extends View {
 

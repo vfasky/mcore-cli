@@ -1,11 +1,11 @@
 // svg 图标
 .svg-icon {
     display: inline-block;
-    vertical-align: middle;
     width: 16px;
     height: 16px;
-    fill: none;
     color: inherit;
+    vertical-align: middle;
+    fill: none;
     stroke: currentColor;
 }
 
@@ -19,6 +19,7 @@
 }
 
 .svg-right {
+    // default
 }
 
 .svg-down {

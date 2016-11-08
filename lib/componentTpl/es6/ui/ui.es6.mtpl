@@ -5,7 +5,7 @@
 * @link 
 */
 
-import Base from '../base'
+import Base from 'ui/base'
 
 export default class ${ComponentName} extends Base {
     init () {
