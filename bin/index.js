@@ -14,6 +14,20 @@ var path = require('path')
 var yargs = require('yargs')
 var colors = require('colors')
 var generateTpl = require('../lib/componentTpl/')
+var isMcore = false
+
+var mcorerc = {
+    path: './src'
+}
+
+
+// 检查是否有 .mcorerc.js
+let mcorercPath  = path.join(process.cwd(), './.mcorerc.js')
+isMcore = fs.existsSync(mcorercPath)
+
+if (isMcore) {
+    mcorerc = require(mcorercPath)
+}
 
 // init project
 yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
@@ -126,15 +140,15 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
     path: {
         alias: 'p',
         describe: 'The src root path',
-        default: './src'
+        default: mcorerc.path
     },
 
     help: {
         alias: 'h'
     }
 }, function (args) {
-    // 检查是否有 package.json
-    if (!fs.existsSync(path.join(process.cwd(), './package.json'))) {
+    
+    if (!fs.existsSync(path.join(process.cwd(), './.mcorerc.js'))) {
         console.log(colors.red('error: It\'s not a mcore3 project root.'))
         return false
     }
