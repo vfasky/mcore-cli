@@ -175,19 +175,17 @@ switch (process.env.ENV) {
     default:
         // webpack-dev-server
         config.output.publicPath = devHost + 'dist/' + process.env.ENV + '/'
-        config.plugins.push(new OpenBrowserPlugin({
-            url: devHost
-        }))
         config.plugins.push(new ExtractTextPlugin('style/[name].css'))
 
         if (process.env.BUILD) {
             console.log('---- BUILD -----');
-            config.staticPath = '/'
-            config.output.publicPath = '/build/' + process.env.ENV + '/'
             module.exports = config
             return
         }
 
+        config.plugins.push(new OpenBrowserPlugin({
+            url: devHost
+        }))
         config.plugins.push(new ChangeFilesPlugin())
         config.plugins.push(new DashboardPlugin())
 
