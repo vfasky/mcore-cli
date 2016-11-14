@@ -53,7 +53,7 @@ var BuildHtml = (function () {
         Object.keys(this.filters).forEach(function (name) {
             _this.template.addFilter(name, _this.filters[name]);
         });
-        if (process.env.ENV === 'dev-watch') {
+        if (process.env.WATCH) {
             this.watch();
         }
     }

@@ -1,5 +1,5 @@
 /**
- * sass 规范 
+ * sass 规范
  * @date 2016-11-11 15:25:26
  * @author Allenice <994298628@qq.com>
  * @link http://www.allenice233.com
@@ -8,6 +8,7 @@
 // 这里 js 使用双引号是因为想可以自由转换成 json
 
 module.exports = {
+    "ignoreFiles": ["node_modules/**/*.scss"],
     "extends": "stylelint-config-standard",
     "rules": {
         "color-hex-case": null,
@@ -90,7 +91,7 @@ module.exports = {
                 "font-size",
                 "font-style",
                 "font",
-                "font-family",
+                "font-family"
             ]
         }]
     }

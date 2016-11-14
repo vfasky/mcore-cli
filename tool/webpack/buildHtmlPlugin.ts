@@ -92,7 +92,7 @@ export default class BuildHtml {
             this.template.addFilter(name, this.filters[name])
         })
         
-        if (process.env.ENV === 'dev-watch') {
+        if (process.env.WATCH) {
             this.watch()
         }
     }
