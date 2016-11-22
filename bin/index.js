@@ -20,9 +20,8 @@ var mcorerc = {
     path: './src'
 }
 
-
 // 检查是否有 .mcorerc.js
-let mcorercPath  = path.join(process.cwd(), './.mcorerc.js')
+let mcorercPath = path.join(process.cwd(), './.mcorerc.js')
 isMcore = fs.existsSync(mcorercPath)
 
 if (isMcore) {
@@ -147,7 +146,6 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
         alias: 'h'
     }
 }, function (args) {
-    
     if (!fs.existsSync(path.join(process.cwd(), './.mcorerc.js'))) {
         console.log(colors.red('error: It\'s not a mcore3 project root.'))
         return false

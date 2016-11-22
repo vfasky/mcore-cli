@@ -53,7 +53,9 @@ var BuildHtml = (function () {
         Object.keys(this.filters).forEach(function (name) {
             _this.template.addFilter(name, _this.filters[name]);
         });
-        this.watch();
+        if (process.env.WATCH) {
+            this.watch();
+        }
     }
     BuildHtml.prototype.apply = function (compiler) {
         var _this = this;

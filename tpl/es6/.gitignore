@@ -37,6 +37,3 @@ jspm_packages
 .node_repl_history
 
 _changedFiles.json
-dist/dev
-
-yarn.lock
