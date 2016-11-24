@@ -1,0 +1,19 @@
+/**
+* [desc]
+* @date ${curDate}
+* @author 
+* @link 
+*/
+
+import {Template} from 'mcore3'
+import Base from 'tag/base'
+
+export default class ${ComponentName} extends Base {
+
+    init () {
+        this.render(require('./${componentName}.tpl'))
+    }
+    
+}
+
+Template.components['${componentCssName}'] = ${ComponentName}

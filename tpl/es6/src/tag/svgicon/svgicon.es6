@@ -5,44 +5,32 @@
 * @link http://www.allenice233.com
 */
 
-/**
- *
- */
-
-import {Template, Component} from 'mcore3'
+import { Template, Component } from 'mcore3'
 import $ from 'jquery'
 
 export default class Svgicon extends Component {
-    init () {
+    init() {
         this.$parentNode = $(this.el)
         this.buildSVG()
     }
 
-    watch () {
-        this.on('change:icon', ()=>{
+    watch() {
+        this.on('change:icon', () => {
             this.buildSVG()
-        })
-
-        this.on('change:dir', ()=>{
+        }).on('change:dir', () => {
             this.buildSVG()
-        })
-
-        this.on('change:fill', ()=>{
+        }).on('change:fill', () => {
             this.buildSVG()
-        })
-
-        this.on('change:width', ()=>{
+        }).on('change:width', () => {
             this.buildSVG()
-        })
-
-        this.on('change:height', ()=>{
+        }).on('change:height', () => {
             this.buildSVG()
         })
 
     }
 
 
-    buildSVG () {
+    buildSVG() {
         let width = this.scope.width || ''
         let height = this.scope.height || ''
         let className = 'svg-icon'

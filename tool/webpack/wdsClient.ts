@@ -1,5 +1,3 @@
-/// <reference path="../../definition/webpack-dev-server-client-socket.d.ts" />
-
 /**
  * WDS client
  * @author vfasky<vfasky@gmail.com>

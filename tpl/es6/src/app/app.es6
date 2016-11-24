@@ -5,7 +5,7 @@
 * @link
 */
 
-import {App} from 'mcore3'
+import { App } from 'mcore3'
 import $ from 'jquery'
 import route from './route'
 
