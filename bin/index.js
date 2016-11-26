@@ -136,7 +136,7 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
         alias: 'l',
         describe: 'The language that the project used.',
         choices: ['es6', 'ts'],
-        default: mcorerc.language
+        default: mcorerc.language || 'es6'
     },
 
     type: {
@@ -213,7 +213,7 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
         rootPath: process.cwd(),
         outPath: path.join(process.cwd(), args.out),
         jsonName: args.name
-    })
+    }, mcorerc)
     // console.log(sourePaths)
 })
 .version(function () {
