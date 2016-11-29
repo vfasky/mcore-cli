@@ -14,7 +14,7 @@ let _hash: any = null
 socket('/sockjs-node', {
     changeFile: function(changeFiles: any[]) {
         let isScript = false
-        let scriptTypes = ['.coffee', '.js', '.tpl', '.es6', '.html']
+        let scriptTypes = ['.ts', '.js', '.tpl', '.es6', '.coffee', '.html']
         for(let file of changeFiles) {
             let extname = path.extname(file)
             if (scriptTypes.indexOf(extname.toLowerCase()) !== -1) {
