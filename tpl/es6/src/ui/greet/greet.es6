@@ -1,5 +1,5 @@
 
-import Base from '../base'
+import Base from 'ui/base'
 
 export default class Greet extends Base {
     init () {

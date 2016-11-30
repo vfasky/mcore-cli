@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/@types/node/index.d.ts" />
-/// <reference path="../../definition/fs-plus.d.ts" />
 /**
  * build html for webpack plugin
  * @author vfasky<vfasky@gmail.com>
@@ -31,7 +29,7 @@ function getDep (tplPath:string, outPath:string):pathInfo[] {
     let tplFiles = glob.sync(path.join(tplPath, '**/*.html'))
     let data:pathInfo[] = []
     
-    tplFiles.forEach((htmlFile) => {
+    tplFiles.forEach((htmlFile: string) => {
         let relative = path.relative(tplPath, htmlFile)
         let baseName = path.basename(htmlFile)
         // 忽略以 _ 开头的文件名

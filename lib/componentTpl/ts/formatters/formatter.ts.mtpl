@@ -1,0 +1,12 @@
+/**
+* [desc]
+* @date ${curDate}
+* @author 
+* @link 
+*/
+
+import * as mcore from 'mcore3'
+
+mcore.Template.formatters['${componentCssName}'] = function (x) {
+    return x
+}

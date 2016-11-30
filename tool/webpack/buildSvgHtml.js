@@ -1,12 +1,10 @@
-/// <reference path="../../node_modules/@types/node/index.d.ts" />
-/// <reference path="../../definition/fs-plus.d.ts" />
-"use strict";
 /**
 * 生成 svg 的 html 文件
 * @date 2016-09-07 16:45:03
 * @author Allenice <994298628@qq.com>
 * @link http://www.allenice233.com
 */
+"use strict";
 var path = require('path');
 var fs = require('fs');
 function default_1(htmlPath, iconPath) {
@@ -26,5 +24,6 @@ function default_1(htmlPath, iconPath) {
         fs.writeFileSync(htmlPath, html, 'utf8');
     });
 }
-exports.__esModule = true;
-exports["default"] = default_1;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = default_1;
+//# sourceMappingURL=buildSvgHtml.js.map

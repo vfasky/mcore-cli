@@ -14,10 +14,12 @@ var path = require('path')
 var yargs = require('yargs')
 var colors = require('colors')
 var generateTpl = require('../lib/componentTpl/')
+var buildDoc = require('../lib/buildDoc')
 var isMcore = false
 
 var mcorerc = {
-    path: './src'
+    path: './src',
+    language: 'es6'
 }
 
 // 检查是否有 .mcorerc.js
@@ -25,7 +27,7 @@ let mcorercPath = path.join(process.cwd(), './.mcorerc.js')
 isMcore = fs.existsSync(mcorercPath)
 
 if (isMcore) {
-    mcorerc = require(mcorercPath)
+    mcorerc = Object.assign(mcorerc, require(mcorercPath))
 }
 
 // init project
@@ -33,7 +35,7 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
     lang: {
         alias: 'l',
         describe: 'The language that the project used.',
-        choices: ['es6'],
+        choices: ['es6', 'ts'],
         default: 'es6'
     },
 
@@ -103,6 +105,14 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
             'eslint-plugin-standard': '^2.0.1',
             'eslint-plugin-html': '^1.5.3'
         })
+    } else if (args.lang === 'ts') {
+        Object.assign(packageJsonTpl.devDependencies, {
+            '@types/jquery': '^2.0.34',
+            '@types/nunjucks': '^0.0.32',
+            '@types/eventemitter3': '^1.2.0',
+            'ts-loader': '^1.2.2',
+            'typescript': '^2.0.10'
+        })
     }
 
     console.log('Copy package.json')
@@ -125,8 +135,8 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
     lang: {
         alias: 'l',
         describe: 'The language that the project used.',
-        choices: ['es6'],
-        default: 'es6'
+        choices: ['es6', 'ts'],
+        default: mcorerc.language || 'es6'
     },
 
     type: {
@@ -176,6 +186,35 @@ yargs.command(['init [dir]', 'i'], 'Init a mcore3 project', {
         componentCssName: componentCssName,
         componentPath: componentRoutePath
     })
+})
+.command(['doc'], 'build doc to project', {
+    out: {
+        alias: 'o',
+        describe: 'The src path',
+        default: './doc'
+    },
+    name: {
+        alias: 'n',
+        describe: 'json file name',
+        default: 'typedoc.json'
+    }
+}, function (args) {
+    args._.shift()
+    let sourePaths = args._.map((p) => {
+        return path.join(process.cwd(), p)
+    }).filter((p) => {
+        return fs.isDirectorySync(p)
+    })
+    if (sourePaths.length === 0) {
+        console.log(colors.red('error: It\'s not a src path.'))
+        return false
+    }
+    buildDoc(sourePaths, {
+        rootPath: process.cwd(),
+        outPath: path.join(process.cwd(), args.out),
+        jsonName: args.name
+    }, mcorerc)
+    // console.log(sourePaths)
 })
 .version(function () {
     return require('../package.json').version

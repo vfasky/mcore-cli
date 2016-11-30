@@ -1,4 +1,3 @@
-/// <reference path="../../definition/webpack-dev-server-client-socket.d.ts" />
 /**
  * WDS client
  * @author vfasky<vfasky@gmail.com>
@@ -12,7 +11,7 @@ var _hash = null;
 socket('/sockjs-node', {
     changeFile: function (changeFiles) {
         var isScript = false;
-        var scriptTypes = ['.coffee', '.js', '.tpl', '.es6', '.html'];
+        var scriptTypes = ['.ts', '.js', '.tpl', '.es6', '.coffee', '.html'];
         for (var _i = 0, changeFiles_1 = changeFiles; _i < changeFiles_1.length; _i++) {
             var file = changeFiles_1[_i];
             var extname = path.extname(file);

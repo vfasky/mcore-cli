@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/@types/node/index.d.ts" />
-/// <reference path="../../definition/fs-plus.d.ts" />
 /**
  * build html for webpack plugin
  * @author vfasky<vfasky@gmail.com>
@@ -136,5 +134,6 @@ var BuildHtml = (function () {
     };
     return BuildHtml;
 }());
-exports.__esModule = true;
-exports["default"] = BuildHtml;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = BuildHtml;
+//# sourceMappingURL=buildHtmlPlugin.js.map

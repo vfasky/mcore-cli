@@ -6,7 +6,10 @@
         "target": "es5",
         "sourceMap": true,
         "types": ["request"],
-        "typeRoots": [ "node_modules/@types/"]
+        "typeRoots": [ 
+            "./definition",
+            "node_modules/@types/"
+        ]
     },
     "exclude": [
         "node_modules",

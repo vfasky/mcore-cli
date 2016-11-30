@@ -1,6 +1,3 @@
-/// <reference path="../../node_modules/@types/node/index.d.ts" />
-/// <reference path="../../definition/fs-plus.d.ts" />
-
 /**
 * 生成 svg 的 html 文件
 * @date 2016-09-07 16:45:03
