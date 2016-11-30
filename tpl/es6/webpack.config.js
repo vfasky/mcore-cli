@@ -94,7 +94,7 @@ let config = {
         ]
     },
     resolve: {
-        modulesDirectories: ['node_modules', './src'],
+        modulesDirectories: [path.resolve('./node_modules'), './src'],
         extensions: ['', '.es6', '.js', '.coffee', '.scss'],
         alias: {
             env: path.join(__dirname, './src/env', process.env.ENV),
