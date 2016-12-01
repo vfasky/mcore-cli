@@ -5,7 +5,7 @@
 * @link 
 */
 
-import {Template} from 'mcore3'
+import * as mcore from 'mcore3'
 import Base from 'tag/base'
 
 export default class ${ComponentName} extends Base {
@@ -16,4 +16,4 @@ export default class ${ComponentName} extends Base {
     
 }
 
-Template.components['${componentCssName}'] = ${ComponentName}
+mcore.Template.components['${componentCssName}'] = ${ComponentName}
