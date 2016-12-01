@@ -1,4 +1,4 @@
-import './${componentName}.scss'
 import ${ComponentName} from './${componentName}'
+import './${componentName}.scss'
 
 export default ${ComponentName}
