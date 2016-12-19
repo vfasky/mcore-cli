@@ -1,8 +1,8 @@
 /**
 * [desc]
 * @date ${curDate}
-* @author 
-* @link 
+* @author
+* @link
 */
 
 import {Template} from 'mcore3'
@@ -13,7 +13,6 @@ export default class ${ComponentName} extends Base {
     init () {
         this.render(require('./${componentName}.tpl'))
     }
-    
 }
 
 Template.components['${componentCssName}'] = ${ComponentName}
